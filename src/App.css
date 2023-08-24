@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+*{
+  font-family: Pretendard;
+  box-sizing: border-box;
+}
+
+p{
+  margin: 0;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
