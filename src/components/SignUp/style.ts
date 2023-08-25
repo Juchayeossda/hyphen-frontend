@@ -104,6 +104,8 @@ export const GoToSignIn = styled(Link)`
 
 export const WhiteBox = styled.div`
     padding: 70px 127px;
+    width: 564px;
+    height: 670px;
 
     position: absolute;
     top: 0;
@@ -119,7 +121,7 @@ export const SignUpTitleParagraph = styled.p`
 `
 
 export const CheckPasswordShow = styled.input`
-    margin: 0;
+    margin-right: 5px;
 `
 
 export const CheckPasswordShowLabel = styled.label`
@@ -190,6 +192,8 @@ export const GoogleBtn = styled.button`
 `
 
 export const GoogleLogo = styled.img`
+    margin-right: 7.4px;
+
     width: 18.604px;
     height: 19px;
 `
