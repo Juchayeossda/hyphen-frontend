@@ -99,6 +99,7 @@ export const GoToSignIn = styled(Link)`
     color: #FFF;
     font-size: 16px;
     font-weight: 600;
+    text-decoration: none;
 `
 
 export const WhiteBox = styled.div`
@@ -149,21 +150,46 @@ export const SignUpBtn = styled.button`
 `
 
 export const OrBox = styled.div`
-    margin-top: 20px;
+    margin: 20px 0;
     
     display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
 export const OrHrBox = styled.div<{direction:string}>`
-    //${(props)=>(props.direction==="left" ? "margin-right: 15px" : "margin-left: 15px" )};
+    ${(props)=>(props.direction=="left" ? "margin-right:15px" : "margin-left:15px")};
 
     width: 50px;
     height: 1px;
-    color: #D9D9D9;
+    background-color: #D9D9D9;
 `
 
 export const OrParagraph = styled.p`
     color: #8D8D8D;
     font-size: 12px;
     font-weight: 500;
+`
+
+export const GoogleBtn = styled.button`
+    width: 310px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #C7C7C7;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.10);
+
+    color: #6B6B6B;
+    font-size: 16px;
+    font-weight: 600;
+`
+
+export const GoogleLogo = styled.img`
+    width: 18.604px;
+    height: 19px;
 `

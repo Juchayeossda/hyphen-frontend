@@ -3,6 +3,7 @@ import * as S from "./style"
 import AuthImg from "../../assets/AuthImg.svg"
 import AuthInputLabel from '../common/Auth/AuthInputLabel';
 import AuthInput from '../common/Auth/AuthInput';
+import GoogleLogo from "../../assets/GoogleLogo.svg"
 
 const SignUp = () => {
     const SLOGAN = ["We are","Invite only right now."]
@@ -50,6 +51,11 @@ const SignUp = () => {
                         <S.OrParagraph>or</S.OrParagraph>
                         <S.OrHrBox direction="right"/>
                     </S.OrBox>
+
+                    <S.GoogleBtn>
+                        <S.GoogleLogo src={GoogleLogo}/>
+                        Continue with google
+                    </S.GoogleBtn>
 
                 </S.WhiteBox>
 
