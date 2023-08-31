@@ -198,4 +198,6 @@ export const GoogleLogo = styled.img`
     height: 19px;
 `
 
-export const AnotherLogin = styled.link``
+export const AnotherLogin = styled.link`
+    height: 100px;
+`
