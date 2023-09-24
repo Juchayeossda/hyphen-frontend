@@ -6,6 +6,9 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import HellogMain from "./components/Hellog/Main"
 import HellogDetail from "./components/Hellog/Detail"
+import HellogHeaderLayout from './components/layout/HellogHeaderLayout';
+import WriteMain from './components/Hellog/Write/Main';
+import WriteSubmit from './components/Hellog/Write/Submit';
 
 function App() {
   return (
@@ -13,8 +16,12 @@ function App() {
       <Routes>
         <Route path='/signIn' element={<SignIn/>} />
         <Route path='/signUp' element={<SignUp/>} />
-        <Route path='/hellog/main' element={<HellogMain/>} />
-        <Route path='/hellog/:id' element={<HellogDetail/>} />
+        <Route element={<HellogHeaderLayout/>}>
+          <Route path='/hellog' element={<HellogMain/>} />
+          <Route path='/hellog/detail/:id' element={<HellogDetail/>} />
+        </Route>
+        <Route path='/hellog/write' element={<WriteMain/>} /> 
+        <Route path='/hellog/write/submit' element={<WriteSubmit/>} />
       </Routes>
     </BrowserRouter>
   );

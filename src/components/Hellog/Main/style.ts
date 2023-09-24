@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const MainLayout = styled.div`
@@ -111,21 +112,36 @@ export const ChooseSortIcon = styled.img`
     height: 1.375rem;
 `
 
-export const PostListBox = styled.div`
+export const PostListBox = styled.section`
+    //width: 90vw;
+
     display: flex;
     justify-content: space-between;
+    //justify-content: stretch;
+    // align-items: stretch;
     flex-wrap: wrap;
 `
 
 
-export const PostBox = styled.div`
+export const PostBox = styled(Link)`
+    //margin-left: 2vw;
     margin-bottom: 2vw;
     
     width: 18.5rem;
     height: 21.625rem;
-    
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.10);
-    `
+
+    text-decoration: none;
+    color: #000;
+
+    position: relative;
+`
+
+export const PostTextBox = styled.div`
+    margin-top: 1.13rem;
+    margin-left: 0.81rem;
+`
+
 export const PostUpperLineBox = styled.div`
     
 `
@@ -144,15 +160,26 @@ export const PostTitle = styled.div`
 `
 
 export const PostPreContent = styled.div`
+    margin-top: 0.31rem;
+
     color: #666975;
     font-family: Pretendard;
     font-size: 0.75rem;
     font-weight: 500;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    width: 16.43rem;
+    max-height: 2.625rem;
 `
 
 export const PostInfoUpperLineRow = styled.div`
     display: flex;
     align-items: center;
+
+    position: absolute;
+    bottom: 3.19rem;
 `
 
 export const PostInfoUpperLineBox = styled.div`
@@ -172,14 +199,23 @@ export const PostInfoUpperLineDot = styled.svg`
 `
 
 export const PostLowerInfoRow = styled.div`
-    margin: 0 4%;
-
     display: flex;
     justify-content: space-between;
+
+    width: 16.875rem;
+
+    position: absolute;
+    bottom: 0.56rem;
 `
 
-export const PostDevideLine = styled.hr`
+export const PostDevideLine = styled.div`
+    width: 100%;
+    // height: 10px;
     border: 0.0625rem #E6EAEE solid;
+
+    position: absolute;
+    left: 0;
+    bottom: 2.37rem;
 `
 
 export const PostProfileBox = styled.div`
@@ -195,7 +231,7 @@ export const PostProfileImg = styled.img`
     height: 1.25rem;
 `
 
-export const PostText = styled.div`
+export const ProfileText = styled.div`
     font-family: Pretendard;
     font-size: 0.6875rem;
     font-weight: 700;
