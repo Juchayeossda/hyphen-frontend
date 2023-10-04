@@ -44,7 +44,7 @@ export const BlurBox = styled.div`
     backdrop-filter: blur(17.5px);
 `
 
-export const TitleBlurBox = styled.div`
+export const TitleBlurBox = styled(Link)`
 width: 80px;
 height: 28px;
 background: rgba(185, 179, 179, 0.31);
@@ -56,6 +56,7 @@ align-items: center;
 color: #FFF;
 font-size: 16px;
 font-weight: 600;
+text-decoration: none;
 `
 
 export const DevideLine = styled.hr`

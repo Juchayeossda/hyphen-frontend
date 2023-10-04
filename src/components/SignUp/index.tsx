@@ -14,7 +14,7 @@ const SignUp = () => {
             <S.ContentBox>
                 <S.AuthBackImg src={AuthImg}/>
                 <S.BlurBox>
-                    <S.TitleBlurBox>HYPHEN</S.TitleBlurBox>
+                    <S.TitleBlurBox to='/'>HYPHEN</S.TitleBlurBox>
                     <S.DevideLine/>
                     <S.Slogan1Paragraph>{SLOGAN[0]}</S.Slogan1Paragraph>
                     <S.Slogan2Paragraph>{SLOGAN[1]}</S.Slogan2Paragraph>

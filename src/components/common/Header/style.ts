@@ -17,16 +17,16 @@ export const UserRow = styled.div`
     align-items: center;
 `
 
-export const Logo = styled.div`
+export const Logo = styled(Link)`
     color: #117746;
     font-family: Inter;
     font-size: 1.5rem;
     font-weight: 600;
+    text-decoration: none;
 `
 
 export const SearchBox = styled.div`
-    margin-left: 27%;
-    margin-right: 23%;
+    margin-left: 24vw;
 
     width: 26.9rem;
     height: 2.5rem;
@@ -59,7 +59,7 @@ export const SearchInput = styled.input`
 `
 
 export const PostLink = styled(Link)`
-    margin-right: 1.4vw;
+    margin-right: 2vw;
 
     width: 5.75rem;
     height: 1.9375rem;
@@ -77,6 +77,20 @@ export const PostLink = styled(Link)`
     font-family: Pretendard;
     font-size: 0.875rem;
     font-weight: 600;
+`
+
+export const TextRedirect = styled(Link)<{isNow:boolean}>`
+    margin-left: 1.7vw;
+
+    color: ${(props)=>(props.isNow ? "#117746" : "#949494")};
+    font-family: Pretendard;
+    font-size: 0.8vw;
+    font-weight: 400;
+    text-decoration: none;
+`
+
+export const TextRow = styled.div`
+
 `
 
 export const ProfileIcon = styled.img`

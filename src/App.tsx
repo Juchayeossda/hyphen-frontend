@@ -9,16 +9,24 @@ import HellogDetail from "./components/Hellog/Detail"
 import HellogHeaderLayout from './components/layout/HellogHeaderLayout';
 import WriteMain from './components/Hellog/Write/Main';
 import WriteSubmit from './components/Hellog/Write/Submit';
+import EnjoyDrawingMain from './components/EnjoyDrawing/Main';
+import Main from './components/Main';
+import EnjoyDrawingDetail from './components/EnjoyDrawing/Detail';
+import PsyTest from './components/PsychologicalTest/Main';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/signIn' element={<SignIn/>} />
-        <Route path='/signUp' element={<SignUp/>} />
+        <Route path='/' element={<Main/>} />
+        <Route path='/signin' element={<SignIn/>} />
+        <Route path='/signup' element={<SignUp/>} />
+        <Route path='/psytest' element={<PsyTest/>} />
         <Route element={<HellogHeaderLayout/>}>
           <Route path='/hellog' element={<HellogMain/>} />
           <Route path='/hellog/detail/:id' element={<HellogDetail/>} />
+          <Route path='/enjoydrawing' element={<EnjoyDrawingMain/>} />
+          <Route path='/enjoydrawing/detail/:id' element={<EnjoyDrawingDetail/>} />
         </Route>
         <Route path='/hellog/write' element={<WriteMain/>} /> 
         <Route path='/hellog/write/submit' element={<WriteSubmit/>} />
