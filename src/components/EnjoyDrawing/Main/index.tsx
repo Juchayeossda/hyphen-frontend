@@ -1,0 +1,74 @@
+import React, { EffectCallback, useEffect, useRef, useState } from 'react';
+import EnjoyDrawingHeader from '../../common/Header';
+import * as S from "./style"
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import TagSettingIcon from "../../../assets/TagSettingIcon.svg"
+import { JsxElement } from 'typescript';
+import { Instance } from '../../../config/Axios';
+
+// 그림 감상 컴포넌트
+const EnjoyDrawingMain = () => {
+
+    const navigator = useNavigate()
+    const TAGLIST = ["차분한", "조용한", "활기찬","신나는","지친","창의적인","게으른","밝은","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트"]
+    const [DrawingList,setDrawingList] = useState<{
+        id:number,
+        src:string
+    }[]>([])
+
+    const ImgRef = useRef<HTMLImageElement[]>([]);
+    const [isImgRef, setIsImgRef] = useState<boolean>(false)
+
+    useEffect(()=>{
+        Instance.get('/api/paints')
+        .then((res)=>{
+            setDrawingList(res.data.Data)
+        })
+        .catch((err)=>{
+            console.error(err)
+        })
+        
+        if(ImgRef.current !== undefined && ImgRef.current !== null){
+            setIsImgRef(true)
+        }
+
+    },[ImgRef])
+    
+    if (!isImgRef){
+        <h1>정보를 가져오는 중입니다.</h1>
+    }
+
+    return (
+        <S.EnjoyDrawingMainLayout>
+
+            <S.SecondRow>
+                <S.TagSettingBox>
+                    <S.TagSettingIconImg src={TagSettingIcon}/>
+                </S.TagSettingBox>
+                {
+                    TAGLIST.map((data,index)=>
+                    <S.TagBox>{data}</S.TagBox>
+                    )
+                }
+            </S.SecondRow>
+
+            <S.DrawingsBox>
+                {
+                    DrawingList.map((v,i)=>(
+                        <S.DrawingContainer
+                            onClick={()=>{
+                                navigator(`/enjoydrawing/detail/${v.id}`)
+                            }}
+                            he={ Math.ceil(( (ImgRef.current[v.id]?.offsetHeight == undefined ? 0 : ImgRef.current[v.id].offsetHeight ) + 8 )/( 8 + 8 ))}
+                        >
+                            <S.DrawingImg ref={(e:HTMLImageElement) => {ImgRef.current[v.id] = e} } src={v.src}/>
+                        </S.DrawingContainer>
+                    ))
+                }
+
+            </S.DrawingsBox>
+        </S.EnjoyDrawingMainLayout>
+    );
+};
+
+export default EnjoyDrawingMain;

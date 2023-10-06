@@ -44,7 +44,7 @@ export const BlurBox = styled.div`
     backdrop-filter: blur(17.5px);
 `
 
-export const TitleBlurBox = styled.div`
+export const TitleBlurBox = styled(Link)`
 width: 80px;
 height: 28px;
 background: rgba(185, 179, 179, 0.31);
@@ -56,6 +56,7 @@ align-items: center;
 color: #FFF;
 font-size: 16px;
 font-weight: 600;
+text-decoration: none;
 `
 
 export const DevideLine = styled.hr`
@@ -99,10 +100,13 @@ export const GoToSignIn = styled(Link)`
     color: #FFF;
     font-size: 16px;
     font-weight: 600;
+    text-decoration: none;
 `
 
 export const WhiteBox = styled.div`
     padding: 70px 127px;
+    width: 564px;
+    height: 670px;
 
     position: absolute;
     top: 0;
@@ -118,7 +122,7 @@ export const SignUpTitleParagraph = styled.p`
 `
 
 export const CheckPasswordShow = styled.input`
-    margin: 0;
+    margin-right: 5px;
 `
 
 export const CheckPasswordShowLabel = styled.label`
@@ -149,21 +153,48 @@ export const SignUpBtn = styled.button`
 `
 
 export const OrBox = styled.div`
-    margin-top: 20px;
+    margin: 20px 0;
     
     display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
 export const OrHrBox = styled.div<{direction:string}>`
-    //${(props)=>(props.direction==="left" ? "margin-right: 15px" : "margin-left: 15px" )};
+    ${(props)=>(props.direction=="left" ? "margin-right:15px" : "margin-left:15px")};
 
     width: 50px;
     height: 1px;
-    color: #D9D9D9;
+    background-color: #D9D9D9;
 `
 
 export const OrParagraph = styled.p`
     color: #8D8D8D;
     font-size: 12px;
     font-weight: 500;
+`
+
+export const GoogleBtn = styled.button`
+    width: 310px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #C7C7C7;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.10);
+
+    color: #6B6B6B;
+    font-size: 16px;
+    font-weight: 600;
+`
+
+export const GoogleLogo = styled.img`
+    margin-right: 7.4px;
+
+    width: 18.604px;
+    height: 19px;
 `
