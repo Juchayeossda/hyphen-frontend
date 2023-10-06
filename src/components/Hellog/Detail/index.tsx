@@ -89,7 +89,7 @@ const Detail = () => {
                             <S.ReplyToggleSvg isOpen={isOpenReply.includes(i)} xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
                                 <path d="M0 10L0 0L6 5L0 10Z" fill="#24D782"/>
                             </S.ReplyToggleSvg>
-                            <S.ReplyCount>답글 234</S.ReplyCount>
+                            <S.ReplyCount>답글 1</S.ReplyCount>
                         </S.ReplyInfoRow>
                         {
                             isOpenReply.includes(i) &&

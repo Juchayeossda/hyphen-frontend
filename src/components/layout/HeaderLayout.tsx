@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../common/Header';
 import { Outlet } from 'react-router-dom';
 
-const HellogHeaderLayout = () => {
+const HeaderLayout = () => {
     return (
         <>
             <Header/>
@@ -11,4 +11,4 @@ const HellogHeaderLayout = () => {
     );
 };
 
-export default HellogHeaderLayout;
+export default HeaderLayout;

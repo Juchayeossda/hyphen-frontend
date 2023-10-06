@@ -74,14 +74,18 @@ export const DrawingsBox = styled.div`
     //max-width: 100rem;
     //margin: 0 auto;
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 0.5rem;
     grid-template-columns: repeat(8, 1fr);
+    grid-auto-rows: 0.5rem;
+    // grid-template-rows: masonry;
     // grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
-    // grid-auto-rows: 0.5rem;
 `
 
-export const DrawingContainer = styled.div`
+export const DrawingContainer = styled.div<{he:number|undefined}>`
     width: 11vw;
+    //height: ${(props)=>props.he != undefined ? props.he+"px" : "50px"};
+
+    grid-row-end: span ${(props)=>props.he};
 `
 
 export const DrawingImg = styled.img`

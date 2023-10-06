@@ -24,17 +24,24 @@ export const ExplainContentBox = styled.div`
 
     display: flex;
     align-items: center;
+
+    position: relative;
 `
 
 export const ExplainImg = styled.img`
-    width: 63%;
-    `
+    max-width: 63%;
+
+    min-height: 70%;
+    max-height: 100%;
+`
 
 export const InfoBox = styled.div`
-    margin-left: 3%;
-
     width: 34%;
     height: 100%;
+    
+    padding: 0.94rem;
+    position: absolute;
+    right: 0;
 `
 
 export const IconRow = styled.div`
@@ -106,13 +113,28 @@ export const InfoContent = styled.div`
     word-break: keep-all;
 `
 
-export const OtherDrawingContainer = styled.div`
+export const OtherDrawingBox = styled.div`
+    //width: 100%;
+
+    //display: flex;
+    //justify-content: space-between;
+    //flex-wrap: wrap;
+
+    //max-width: 100rem;
+    //margin: 0 auto;
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 0.5rem;
     grid-template-columns: repeat(8, 1fr);
+    grid-auto-rows: 0.5rem;
+    // grid-template-rows: masonry;
+    // grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
 `
 
-export const DrawingContainer = styled.div`
+export const DrawingContainer = styled.div<{he:number|undefined}>`
+    width: 11vw;
+    //height: ${(props)=>props.he != undefined ? props.he+"px" : "50px"};
+
+    grid-row-end: span ${(props)=>props.he};
 `
 
 export const DrawingImg = styled.img`
@@ -121,6 +143,7 @@ export const DrawingImg = styled.img`
     border-radius: 1.25rem;
     display: inline-block;
     object-fit: cover;
+    // object-fit: contain;
 `
 
 export const ShowMoreDrawing = styled.div`

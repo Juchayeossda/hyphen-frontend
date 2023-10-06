@@ -5,7 +5,7 @@ export const HeaderLayout = styled.div`
     padding: 0 7%;
 
     width: 100%;
-    height: 4.375rem;   
+    height: 3vw;   
 
     display: flex;
     justify-content: space-between;

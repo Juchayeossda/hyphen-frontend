@@ -4,14 +4,28 @@ import ProfileIcon from "../../../assets/ProfileIcon.svg"
 import TrandIcon from "../../../assets/TrandIcon.svg"
 import LatelyIcon from "../../../assets/LatelyIcon.svg"
 import LikeIcon from "../../../assets/LikeIcon.svg"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { Instance } from "../../../config/Axios"
+import { PostListType } from "./type"
+import userEvent from "@testing-library/user-event"
 
 const Main = () => {
     const [whatSort, setWhatSort] = useState({
         trand:true,
         lately:false
     })
-    const NUMLIST = [...Array(11).map((v,i)=>i+1)]
+    // const NUMLIST = [...Array(11).map((v,i)=>i+1)]
+    const [postList, setPostList] = useState<PostListType[]>([])
+
+    useEffect(()=>{
+        Instance.get('/api/hellog/posts')
+        .then((res)=>{
+            setPostList(res.data.Data.posts)
+        })
+        .catch((err)=>{
+            console.error(err)
+        })
+    },[])
 
     return (
         <S.MainLayout>
@@ -30,21 +44,21 @@ const Main = () => {
                 <S.PostListBox>
 
                     {
-                        NUMLIST.map((v,i)=>(
-                            <S.PostBox to={`/hellog/detail/${i}`}>
-                                <S.PostPreImg src="https://news.samsungdisplay.com/wp-content/uploads/2018/08/8.jpg"/>
+                        postList.map((v,i)=>(
+                            <S.PostBox to={`/hellog/detail/${v.id}`}>
+                                <S.PostPreImg src={v.previewImage}/>
 
                                 <S.PostTextBox>
 
-                                    <S.PostTitle>노윤서 개이쁨</S.PostTitle>
-                                    <S.PostPreContent>진짜 노윤서 너무 예쁜거 아님??? 진짜 말이 안된다. 어떻게 이렇게 예쁠 수 가있지? 진짜 너어어무 예쁘다.아아아아아아아아아아테스트테스트아아아아아아아아아아테스트테스트</S.PostPreContent>
+                                    <S.PostTitle>{v.title}</S.PostTitle>
+                                    <S.PostPreContent>{v.shortDescription}</S.PostPreContent>
                                     
                                     <S.PostInfoUpperLineRow>
-                                        <S.PostInfoUpperLineBox>1초 전</S.PostInfoUpperLineBox>
+                                        <S.PostInfoUpperLineBox>{v.created_at.toString()}</S.PostInfoUpperLineBox>
                                         <S.PostInfoUpperLineDot xmlns="http://www.w3.org/2000/svg" width="1" height="1" viewBox="0 0 1 1" fill="none">
                                             <circle cx="0.5" cy="0.5" r="0.5" fill="#999CA8"/>
                                         </S.PostInfoUpperLineDot>
-                                        <S.PostInfoUpperLineBox>0개의 댓글</S.PostInfoUpperLineBox>
+                                        <S.PostInfoUpperLineBox>{Math.round(Math.random()*10)}개의 댓글</S.PostInfoUpperLineBox>
                                     </S.PostInfoUpperLineRow>
 
                                     <S.PostDevideLine/>
@@ -52,12 +66,12 @@ const Main = () => {
                                     <S.PostLowerInfoRow>
                                         <S.PostProfileBox>
                                             <S.PostProfileImg src={ProfileIcon}/>
-                                            <S.ProfileText>Jahyun</S.ProfileText>
+                                            <S.ProfileText>{v.user.name}</S.ProfileText>
                                         </S.PostProfileBox>
 
                                         <S.LinkBox>
                                             <S.LinkImg src={LikeIcon}/>
-                                            <S.LinkCountText>7</S.LinkCountText>
+                                            <S.LinkCountText>{v.likes}</S.LinkCountText>
                                         </S.LinkBox>
 
                                     </S.PostLowerInfoRow>

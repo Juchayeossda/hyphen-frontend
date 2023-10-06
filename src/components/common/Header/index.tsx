@@ -9,7 +9,7 @@ const Header = (
 
     return (
         <S.HeaderLayout>
-            <S.Logo to='/'>Hellog</S.Logo>
+            <S.Logo to='/'>Hyphen</S.Logo>
             <S.SearchBox>
                 <S.SearchIcon src={SearchIcon} />
                 <S.SearchInput placeholder="Search.."/>
