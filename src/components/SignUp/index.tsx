@@ -5,6 +5,7 @@ import AuthInputLabel from '../common/Auth/AuthInputLabel';
 import AuthInput from '../common/Auth/AuthInput';
 import GoogleLogo from "../../assets/GoogleLogo.svg"
 
+// 회원가입
 const SignUp = () => {
     const SLOGAN = ["We are","Invite only right now."]
     const INTRO = ["저희 하이픈 서비스는 사용자에게 최고의 심리 케어를 제공합니다.","자신의 심리를 그림을 통해 체크하고 관리하세요."]

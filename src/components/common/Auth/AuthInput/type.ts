@@ -3,6 +3,7 @@ export interface AuthInputParams {
     width? : string,
     height? : string,
     placeholder? : string,
+    value? : string
 }
 
 export interface AuthInputStyledcComponentParams {
