@@ -46,19 +46,27 @@ export const DrawingImg = styled.img`
     width: 26%;
 `
 
-export const UploadImgBtn = styled.button`
+export const UploadImgInputLabel = styled.label`
     margin-top: 6%;
 
     width: 26%;
     height: 9%;
+    background-color: transparent;
+    display: block;
 
     border-radius: 0.1875rem;
     border: 1px solid #24D782;
-
+    
+    text-align: center;
     color: #24D782;
     font-family: Pretendard;
-    font-size: 0.625rem;
+    font-size: 0.6vw;
     font-weight: 700;
+
+`
+
+export const UploadImgInput = styled.input`
+
 `
 
 export const DevideBoxLine = styled.div`

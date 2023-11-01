@@ -155,3 +155,27 @@ export const ShowMoreDrawing = styled.div`
     font-weight: 700;
 `
 
+export const FirstRow = styled.div`
+    display: flex;
+    align-items: center;
+`
+
+export const NextBtnBox = styled.div`
+    margin: 0 1.5vw;
+
+    width: 2vw;
+    height: 2vw;
+
+    border-radius: 50%;
+    border: 2px #DEDEEA solid;
+
+    background-color: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+`
+
+export const NextBtnSvg = styled.svg``

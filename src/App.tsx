@@ -18,10 +18,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Main/>} />
         <Route path='/signin' element={<SignIn/>} />
         <Route path='/signup' element={<SignUp/>} />
         <Route element={<HeaderLayout/>}>
+          <Route path='/' element={<Main/>} />
+          
           <Route path='/hellog' element={<HellogMain/>} />
           <Route path='/hellog/detail/:id' element={<HellogDetail/>} />
           

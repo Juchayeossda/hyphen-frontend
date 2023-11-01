@@ -10,6 +10,8 @@ export const HeaderLayout = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    position: relative;
 `
 
 export const UserRow = styled.div`
@@ -26,16 +28,19 @@ export const Logo = styled(Link)`
 `
 
 export const SearchBox = styled.div`
-    margin-left: 24vw;
+    margin-left: 20vw;
 
-    width: 26.9rem;
-    height: 2.5rem;
+    width: 22.4vw;
+    height: 2vw;
 
     border-radius: 1.5rem;
     background: #EFF0F5;
 
     display: flex;
     align-items: center;
+
+    position: absolute;
+    left: 18vw;
 `
 
 export const SearchIcon = styled.img`
@@ -49,7 +54,7 @@ export const SearchInput = styled.input`
     ::placeholder{
         color: #BCBCC1;
         font-family: Inter;
-        font-size: 1rem;
+        font-size: 0.8vw;
         font-weight: 500;
     }
 
@@ -61,8 +66,8 @@ export const SearchInput = styled.input`
 export const PostLink = styled(Link)`
     margin-right: 2vw;
 
-    width: 5.75rem;
-    height: 1.9375rem;
+    width: 4.7vw;
+    height: 1.6vw;
 
     border-radius: 0.1875rem;
     border: 1px solid #24D782;
@@ -75,7 +80,7 @@ export const PostLink = styled(Link)`
     text-decoration: none;
     color: #24D782;
     font-family: Pretendard;
-    font-size: 0.875rem;
+    font-size: 0.7vw;
     font-weight: 600;
 `
 
@@ -90,7 +95,8 @@ export const TextRedirect = styled(Link)<{isNow:boolean}>`
 `
 
 export const TextRow = styled.div`
-
+    position: absolute;
+    right: 23vw;
 `
 
 export const ProfileIcon = styled.img`
@@ -98,4 +104,14 @@ export const ProfileIcon = styled.img`
 
     width: 2.5rem;
     height: 2.5rem;
+`
+
+export const LogoutBtn = styled.button`
+    width: 5vw;
+
+    color: #949494;
+    font-family: Pretendard;
+    font-size: 0.8vw;
+    font-weight: 400;
+    text-decoration: none;
 `

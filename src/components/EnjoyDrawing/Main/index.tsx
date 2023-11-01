@@ -3,11 +3,18 @@ import EnjoyDrawingHeader from '../../common/Header';
 import * as S from "./style"
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import TagSettingIcon from "../../../assets/TagSettingIcon.svg"
+import {useSetRecoilState} from 'recoil'
+import { isActivePageAtom } from '../../../state/headerAtom';
 import { JsxElement } from 'typescript';
 import { Instance } from '../../../config/Axios';
 
 // 그림 감상 컴포넌트
 const EnjoyDrawingMain = () => {
+    const setIsActivePage = useSetRecoilState(isActivePageAtom)
+
+    useEffect(()=>{
+        setIsActivePage(3)
+    },[])
 
     const navigator = useNavigate()
     const TAGLIST = ["차분한", "조용한", "활기찬","신나는","지친","창의적인","게으른","밝은","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트"]
@@ -20,13 +27,18 @@ const EnjoyDrawingMain = () => {
     const [isImgRef, setIsImgRef] = useState<boolean>(false)
 
     useEffect(()=>{
-        Instance.get('/api/paints')
+        /* Instance.get('/api/paints')
         .then((res)=>{
             setDrawingList(res.data.Data)
         })
         .catch((err)=>{
             console.error(err)
-        })
+        }) */
+
+        setDrawingList([{
+            id: 1,
+            src: 'https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQ-FvbbAq5IaJUhtwxXEwY0D-jiZju02ejnNHx_bQWL_27GF3srhwJgqusMAqKh3QqU'
+        }])
         
         if(ImgRef.current !== undefined && ImgRef.current !== null){
             setIsImgRef(true)

@@ -104,7 +104,7 @@ export const GoToSignIn = styled(Link)`
 `
 
 export const WhiteBox = styled.div`
-    padding: 70px 127px;
+    padding: 128px 127px;
     width: 564px;
     height: 670px;
 

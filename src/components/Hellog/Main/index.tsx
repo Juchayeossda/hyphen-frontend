@@ -7,9 +7,18 @@ import LikeIcon from "../../../assets/LikeIcon.svg"
 import { useEffect, useState } from "react"
 import { Instance } from "../../../config/Axios"
 import { PostListType } from "./type"
+import {useSetRecoilState} from 'recoil'
+import { isActivePageAtom } from '../../../state/headerAtom';
 import userEvent from "@testing-library/user-event"
+import { useNavigate } from "react-router-dom"
 
 const Main = () => {
+    const setIsActivePage = useSetRecoilState(isActivePageAtom)
+
+    useEffect(()=>{
+        setIsActivePage(4)
+    },[])
+
     const [whatSort, setWhatSort] = useState({
         trand:true,
         lately:false

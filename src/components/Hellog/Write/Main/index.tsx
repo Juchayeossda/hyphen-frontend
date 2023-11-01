@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from "./style"
 import ImgIcon from "../../../../assets/ImgIcon.svg"
 import LinkIcon from "../../../../assets/LinkIcon.svg"
 import QuotationIcon from "../../../../assets/QuotationIcon.svg"
 import SprikeIcon from "../../../../assets/SprikeIcon.svg"
+import { useNavigate } from 'react-router-dom';
 
 const WriteMain = () => {
+    const navigator = useNavigate()
+
+    const [title,setTitle] = useState<string>()
+    const [content,setContent] = useState<string>()
+    
+    useEffect(()=>{
+        if(!localStorage.getItem('accessToken')){
+            navigator('/signin')
+        }
+    },[])
+
     return (
         <S.WriteLayout>
             <S.ContentBox>
@@ -17,11 +29,23 @@ const WriteMain = () => {
                         </S.ArrowSvg>
                         <S.GoBackText>나가기</S.GoBackText>
                     </S.GoBackBox>
-                    <S.SubmitLink to="/hellog/write/submit">작성 완료</S.SubmitLink>
+                    <S.SubmitLink to="/hellog/write/submit"
+                        state={{
+                            title:title,
+                            content:content
+                        }}
+                    >작성 완료</S.SubmitLink>
                 </S.ContentHeaderBox>
 
                 <S.WriteBox>
-                    <S.TitleInput type='text' placeholder='제목을 입력하세요'/>
+                    <S.TitleInput 
+                        type='text' 
+                        placeholder='제목을 입력하세요'
+                        value={title}
+                        onChange={(e)=>{
+                            setTitle(e.target.value)
+                        }}
+                    />
                     <S.TitleDevideLine/>
 
                     <S.BtnRow>
@@ -65,7 +89,13 @@ const WriteMain = () => {
 
                     </S.BtnRow>
 
-                    <S.MainInput placeholder='당신의 기분을 공유해보세요.' />
+                    <S.MainInput 
+                        placeholder='당신의 기분을 공유해보세요.' 
+                        value={content}
+                        onChange={(e)=>{
+                            setContent(e.target.value)
+                        }}
+                    />
 
                 </S.WriteBox>
 

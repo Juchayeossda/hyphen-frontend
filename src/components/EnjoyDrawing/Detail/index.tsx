@@ -12,7 +12,16 @@ const EnjoyDrawingDetail = () => {
     const {id}:any = useParams()
     const navigator = useNavigate()
 
-    const DUMMYCONTENT = ['그림에 대한 구체적이고 흥미로운 설명이 들어갈 예정입니다.']
+    const DUMMYCONTENT = [{
+        src: 'https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQ-FvbbAq5IaJUhtwxXEwY0D-jiZju02ejnNHx_bQWL_27GF3srhwJgqusMAqKh3QqU',
+        intro: '그림에 대한 구체적이고 흥미로운 설명이 들어갈 예정입니다.'
+    },{
+        src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo8o9u31XYayMZRvWTfPRBdN8dPCrXIx_b35O57klZie1ccShcNRO_kTXLG0JjLoFHxBE&usqp=CAU',
+        intro: '그림에 대한 구체적인 설명 1이 들어갈 예정입니다.'
+    },{
+        src: 'https://miro.medium.com/v2/resize:fit:1074/1*GOuSbb4PnQ_xqA-Hu2Mp7g.jpeg',
+        intro: '그림에 대한 구체적인 설명 2가 들어갈 예정입니다.'
+    }]
     const [DrawingList,setDrawingList] = useState<{
         id:number,
         src:string
@@ -20,16 +29,23 @@ const EnjoyDrawingDetail = () => {
     const ImgRef = useRef<HTMLImageElement[]>([]);
     const [isImgRef, setIsImgRef] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [currentIdx,setCurrentIdx] = useState<number>(0)
 
     useEffect(()=>{
-        Instance.get('/api/paints')
+        /* Instance.get('/api/paints')
         .then((res)=>{
             setDrawingList(res.data.Data)
             setIsLoading(true)
         })
         .catch((err)=>{
             console.error(err)
-        })
+        }) */
+
+        setDrawingList([{
+            id: 1,
+            src: 'https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQ-FvbbAq5IaJUhtwxXEwY0D-jiZju02ejnNHx_bQWL_27GF3srhwJgqusMAqKh3QqU'
+        }])
+        
 
         if(ImgRef.current !== undefined && ImgRef.current !== null){
             setIsImgRef(true)
@@ -43,33 +59,71 @@ const EnjoyDrawingDetail = () => {
 
     return (
         <S.EnjoyDrawingDetailLayout>
-            
-            <S.ExplainContentBox>
+
+            <S.FirstRow>
+
                 {
-                    DrawingList[20] === undefined ? (
-                        <div>정보 가져</div>
-                    ) : (
-                        <S.ExplainImg src={DrawingList[id].src}/>
-                    )
+                    currentIdx !== 0 &&
+                    <S.NextBtnBox
+                        onClick={() => setCurrentIdx((prev)=> prev - 1)}
+                    >
+                        <S.NextBtnSvg xmlns="http://www.w3.org/2000/svg" width="0.5vw" height="0.8vw" viewBox="0 0 10 18" fill="none">
+                            <path d="M9 17L1 9L9 1" stroke="#DEDEEA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </S.NextBtnSvg>
+                    </S.NextBtnBox>
                 }
-                <S.InfoBox>
-                    <S.IconRow>
-                        <S.ExplainIconImg src={DownloadIcon}/>
-                        <S.ExplainIconImg src={ShareIcon}/>
-                        <S.ExplainIconImg src={UploadIcon}/>
 
-                        <S.Space/>
+                <S.ExplainContentBox>
+                    {
+                        /* DrawingList[20] === undefined ? (
+                            <div>정보 가져</div>
+                        ) : (
+                            <S.ExplainImg src={DrawingList[id].src}/>
+                        ) */
 
-                        <S.LikeIconImg src={LikeIcon}/>
-                        <S.LikeInfoText>3.45K</S.LikeInfoText>
-                        <S.LikeBtn>Like</S.LikeBtn>
+                        DUMMYCONTENT[currentIdx].src === undefined ? (
+                            <div>정보 가져</div>
+                        ) : (
+                            <S.ExplainImg src={DUMMYCONTENT[currentIdx].src}/>
+                        )
+                    }
 
-                    </S.IconRow>
-                    <S.InfoTitle>{parseInt(id) + 1}번째 작품</S.InfoTitle>
-                    <S.InfoContent>{DUMMYCONTENT}</S.InfoContent>
-                </S.InfoBox>
-            </S.ExplainContentBox>
+                    <S.InfoBox>
+                        <S.IconRow>
+                            <S.ExplainIconImg src={DownloadIcon}/>
+                            <S.ExplainIconImg src={ShareIcon}/>
+                            <S.ExplainIconImg src={UploadIcon}/>
 
+                            <S.Space/>
+
+                            <S.LikeIconImg src={LikeIcon}/>
+                            <S.LikeInfoText>3.45K</S.LikeInfoText>
+                            <S.LikeBtn>Like</S.LikeBtn>
+
+                        </S.IconRow>
+                        <S.InfoTitle>{parseInt(id) + 1}번째 작품</S.InfoTitle>
+                        <S.InfoContent>
+                            {
+                                DUMMYCONTENT[currentIdx].intro
+                            }
+                        </S.InfoContent>
+                    </S.InfoBox>
+
+                </S.ExplainContentBox>
+
+                {
+                    currentIdx !== (DUMMYCONTENT.length-1) &&   
+                    <S.NextBtnBox
+                        onClick={() => setCurrentIdx((prev)=> prev + 1)}
+                    >
+                        <S.NextBtnSvg xmlns="http://www.w3.org/2000/svg" width="0.5vw" height="0.8vw" viewBox="0 0 10 18" fill="none">
+                            <path d="M1 1L9 9L1 17" stroke="#DEDEEA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </S.NextBtnSvg>
+                    </S.NextBtnBox>
+                }
+
+            </S.FirstRow>
+            
             <S.ShowMoreDrawing>그림 더보기</S.ShowMoreDrawing>
 
             <S.OtherDrawingBox>

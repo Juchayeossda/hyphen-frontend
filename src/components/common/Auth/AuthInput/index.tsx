@@ -7,7 +7,9 @@ const AuthInput = ({
     width='310px', 
     height='35px', 
     placeholder='',
-    value=''
+    value='',
+    type='text',
+    onChange
 } :AuthInputParams) => {
     return (
         <S.StyledInput
@@ -16,6 +18,8 @@ const AuthInput = ({
             height={height}
             placeholder={placeholder}
             value={value}
+            type={type}
+            onChange={onChange}
         />
     );
 };
