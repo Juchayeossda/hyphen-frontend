@@ -65,7 +65,7 @@ const Main = () => {
                         </S.FeatureLink>
                     </S.FeatureTextBox>
 
-                    <S.FeatureImg src={MainTestPicture} marginTop={4}/>
+                    <S.FeatureImg src={MainTestPicture} marginTop={4} Width={40.1} Height={20.5}/>
                 </S.FeatureChpBox>
             </S.FeatureChpLayout>
 
@@ -73,7 +73,7 @@ const Main = () => {
 
             <S.FeatureChpLayout>
                 <S.FeatureChpBox>
-                    <S.FeatureImg src={MainPagePic} marginTop={0.2}/>
+                    <S.FeatureImg src={MainPagePic} marginTop={0.2} Width={37.6} Height={29.2}/>
 
                     <S.FeatureTextBox direction='end'>
                         <S.FeatureGreenText>그림 감상</S.FeatureGreenText>
@@ -110,7 +110,7 @@ const Main = () => {
                         </S.FeatureLink>
                     </S.FeatureTextBox>
 
-                    <S.FeatureImg src={MainSmile} marginTop={3.1}/>
+                    <S.FeatureImg src={MainSmile} marginTop={3.1} Width={22} Height={25.5}/>
                 </S.FeatureChpBox>
             </S.FeatureChpLayout>
         </S.MainLayout>

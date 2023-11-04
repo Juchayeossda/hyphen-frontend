@@ -1,19 +1,22 @@
 import * as S from "./style"
 import SearchIcon from "../../../assets/SearchIcon.svg"
 import ProfileIcon from "../../../assets/ProfileIcon.svg"
-import TrandIcon from "../../../assets/TrandIcon.svg"
-import LatelyIcon from "../../../assets/LatelyIcon.svg"
+import TrandActiveIcon from "../../../assets/TrandActiveIcon.svg"
+import LatelyDisableIcon from "../../../assets/LatelyDisableIcon.svg"
+import TrandDiableIcon from "../../../assets/TrandDisableIcon.svg"
+import LatelyActiveIcon from "../../../assets/LatelyActiveIcon.svg"
 import LikeIcon from "../../../assets/LikeIcon.svg"
 import { useEffect, useState } from "react"
 import { Instance } from "../../../config/Axios"
 import { PostType } from "../type"
-import {useSetRecoilState} from 'recoil'
-import { isActivePageAtom } from '../../../state/headerAtom';
+import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
+import { isActivePageAtom, searchValueAtom } from '../../../state/headerAtom';
 import userEvent from "@testing-library/user-event"
 import { useNavigate } from "react-router-dom"
 
 const Main = () => {
     const setIsActivePage = useSetRecoilState(isActivePageAtom)
+    const [searchValue,setSearchValue] = useRecoilState(searchValueAtom)
 
     useEffect(()=>{
         setIsActivePage(4)
@@ -27,6 +30,8 @@ const Main = () => {
     const [postList, setPostList] = useState<PostType[]>([])
 
     useEffect(()=>{
+        setSearchValue("")
+
         Instance.get('/api/hellog/posts')
         .then((res)=>{
             setPostList(res.data.data.posts)
@@ -49,7 +54,7 @@ const Main = () => {
                             })
                         }}
                     >
-                        <S.ChooseSortIcon src={TrandIcon}/>
+                        <S.ChooseSortIcon src={whatSort.trand ? TrandActiveIcon : TrandDiableIcon}/>
                         트렌딩
                     </S.ChooseSortBtn>
                     <S.ChooseSortBtn
@@ -61,7 +66,7 @@ const Main = () => {
                             })
                         }}
                     >
-                        <S.ChooseSortIcon src={LatelyIcon}/>
+                        <S.ChooseSortIcon src={whatSort.lately ? LatelyActiveIcon : LatelyDisableIcon}/>
                         최신
                     </S.ChooseSortBtn>
                 </S.ChooseSortBtnBox>

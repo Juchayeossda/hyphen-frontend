@@ -3,14 +3,15 @@ import EnjoyDrawingHeader from '../../common/Header';
 import * as S from "./style"
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import TagSettingIcon from "../../../assets/TagSettingIcon.svg"
-import {useSetRecoilState} from 'recoil'
-import { isActivePageAtom } from '../../../state/headerAtom';
+import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
+import { isActivePageAtom, searchValueAtom } from '../../../state/headerAtom';
 import { JsxElement } from 'typescript';
 import { Instance } from '../../../config/Axios';
 
 // 그림 감상 컴포넌트
 const EnjoyDrawingMain = () => {
     const setIsActivePage = useSetRecoilState(isActivePageAtom)
+    const [searchValue,setSearchValue] = useRecoilState(searchValueAtom)
 
     useEffect(()=>{
         setIsActivePage(3)
@@ -25,7 +26,7 @@ const EnjoyDrawingMain = () => {
     },[])
 
     const navigator = useNavigate()
-    const TAGLIST = ["차분한", "조용한", "활기찬","신나는","지친","창의적인","게으른","밝은","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트","테스트"]
+    const TAGLIST = ["붉은","푸른","무채색","차분한", "조용한", "활기찬","신나는","지친","우울한","어두운","밝은"]
     const [DrawingList,setDrawingList] = useState<{
         id:number,
         src:string
@@ -35,6 +36,7 @@ const EnjoyDrawingMain = () => {
     const [isImgRef, setIsImgRef] = useState<boolean>(false)
 
     useEffect(()=>{
+        setSearchValue("")
         /* Instance.get('/api/paints')
         .then((res)=>{
             setDrawingList(res.data.Data)
@@ -79,7 +81,7 @@ const EnjoyDrawingMain = () => {
                             onClick={()=>{
                                 navigator(`/enjoydrawing/detail/${v.id}`)
                             }}
-                            he={ Math.ceil(( (ImgRef.current[v.id]?.offsetHeight == undefined ? 0 : ImgRef.current[v.id].offsetHeight ) + 8 )/( 8 + 8 ))}
+                            he={ Math.ceil(( (ImgRef.current[v.id]?.offsetHeight === undefined ? 0 : ImgRef.current[v.id].offsetHeight ) + 8 )/( 8 + 8 ))}
                         >
                             <S.DrawingImg ref={(e:HTMLImageElement) => {ImgRef.current[v.id] = e} } src={v.src}/>
                         </S.DrawingContainer>

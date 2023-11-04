@@ -29,6 +29,7 @@ export const Logo = styled(Link)`
 
 export const SearchBox = styled.div`
     margin-left: 20vw;
+    padding: 1rem;
 
     width: 22.4vw;
     height: 2vw;
@@ -44,7 +45,7 @@ export const SearchBox = styled.div`
 `
 
 export const SearchIcon = styled.img`
-    margin: 0 1rem;
+    margin-right: 1rem;
 
     width: 0.8125rem;
     height: 0.75rem;
@@ -60,6 +61,8 @@ export const SearchInput = styled.input`
 
     border: none;
     background-color: transparent;
+    width: 100%;
+    outline: none;
 
 `
 

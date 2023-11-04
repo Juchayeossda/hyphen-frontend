@@ -3,11 +3,14 @@ import * as S from "./style"
 import SearchIcon from "../../../assets/SearchIcon.svg"
 import ProfileIcon from "../../../assets/ProfileIcon.svg"
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { searchValueAtom } from '../../../state/headerAtom';
 
 const Header = ({
     page
 }:any) => {
     const navigate = useNavigate()
+    const [searchValue,setSearchValue] = useRecoilState(searchValueAtom)
 
     const logoutHandler = () => {
         localStorage.removeItem('accessToken')
@@ -23,7 +26,13 @@ const Header = ({
                 (page === 3 || page === 4) &&
                 <S.SearchBox>
                     <S.SearchIcon src={SearchIcon} />
-                    <S.SearchInput placeholder="Search.."/>
+                    <S.SearchInput 
+                        placeholder="Search.."
+                        value={searchValue}
+                        onChange={(e)=>{
+                            setSearchValue(e.target.value)
+                        }}
+                    />
                 </S.SearchBox>
             }
             <S.TextRow>

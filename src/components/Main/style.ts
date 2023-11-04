@@ -179,8 +179,15 @@ export const FeatureTextBox = styled.div<{direction:string}>`
     align-items: ${(props)=>props.direction};
 `
 
-export const FeatureImg = styled.img<{marginTop:number}>`
+export const FeatureImg = styled.img<{
+        marginTop:number;
+        Width:number;
+        Height:number;
+    }>`
     margin-top: ${(props)=> props.marginTop}vw;
+
+    width: ${(props)=>props.Width}vw;
+    height: ${(props)=>props.Height}vw;
 `
 export const FeatureDevideLine = styled.div`
     width: 100%;

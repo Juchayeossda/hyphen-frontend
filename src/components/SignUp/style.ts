@@ -100,7 +100,7 @@ export const GoToSignIn = styled(Link)`
     color: #FFF;
     font-size: 16px;
     font-weight: 600;
-    text-decoration: none;
+    text-decoration: underline;
 `
 
 export const WhiteBox = styled.div`
