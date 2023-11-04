@@ -13,6 +13,7 @@ import EnjoyDrawingMain from './components/EnjoyDrawing/Main';
 import Main from './components/Main';
 import EnjoyDrawingDetail from './components/EnjoyDrawing/Detail';
 import PsyTest from './components/PsychologicalTest/Main';
+import PsyTestResult from './components/PsychologicalTest/Result';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path='/enjoydrawing/detail/:id' element={<EnjoyDrawingDetail/>} />
           
           <Route path='/psytest' element={<PsyTest/>} />
+          <Route path='/psytest/result' element={<PsyTestResult/>} />
         </Route>
         <Route path='/hellog/write' element={<WriteMain/>} /> 
         <Route path='/hellog/write/submit' element={<WriteSubmit/>} />

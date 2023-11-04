@@ -6,7 +6,7 @@ import LatelyIcon from "../../../assets/LatelyIcon.svg"
 import LikeIcon from "../../../assets/LikeIcon.svg"
 import { useEffect, useState } from "react"
 import { Instance } from "../../../config/Axios"
-import { PostListType } from "./type"
+import { PostType } from "../type"
 import {useSetRecoilState} from 'recoil'
 import { isActivePageAtom } from '../../../state/headerAtom';
 import userEvent from "@testing-library/user-event"
@@ -24,12 +24,12 @@ const Main = () => {
         lately:false
     })
     // const NUMLIST = [...Array(11).map((v,i)=>i+1)]
-    const [postList, setPostList] = useState<PostListType[]>([])
+    const [postList, setPostList] = useState<PostType[]>([])
 
     useEffect(()=>{
         Instance.get('/api/hellog/posts')
         .then((res)=>{
-            setPostList(res.data.Data.posts)
+            setPostList(res.data.data.posts)
         })
         .catch((err)=>{
             console.error(err)
@@ -40,11 +40,27 @@ const Main = () => {
         <S.MainLayout>
             <S.ContentBox>
                 <S.ChooseSortBtnBox>
-                    <S.ChooseSortBtn isChecked={whatSort.trand}>
+                    <S.ChooseSortBtn 
+                        isChecked={whatSort.trand}
+                        onClick={()=>{
+                            setWhatSort({
+                                trand:true,
+                                lately:false
+                            })
+                        }}
+                    >
                         <S.ChooseSortIcon src={TrandIcon}/>
                         트렌딩
                     </S.ChooseSortBtn>
-                    <S.ChooseSortBtn isChecked={whatSort.lately}>
+                    <S.ChooseSortBtn
+                        isChecked={whatSort.lately}
+                        onClick={()=>{
+                            setWhatSort({
+                                trand:false,
+                                lately:true
+                            })
+                        }}
+                    >
                         <S.ChooseSortIcon src={LatelyIcon}/>
                         최신
                     </S.ChooseSortBtn>
@@ -53,21 +69,21 @@ const Main = () => {
                 <S.PostListBox>
 
                     {
-                        postList.map((v,i)=>(
-                            <S.PostBox to={`/hellog/detail/${v.id}`}>
-                                <S.PostPreImg src={v.previewImage}/>
+                        postList.map((v:any,i:any)=>(
+                            <S.PostBox to={`/hellog/detail/${v.post.id}`}>
+                                <S.PostPreImg src={v.post.preview_image}/>
 
                                 <S.PostTextBox>
 
-                                    <S.PostTitle>{v.title}</S.PostTitle>
-                                    <S.PostPreContent>{v.shortDescription}</S.PostPreContent>
+                                    <S.PostTitle>{v.post.title}</S.PostTitle>
+                                    <S.PostPreContent>{v.post.short_description}</S.PostPreContent>
                                     
                                     <S.PostInfoUpperLineRow>
-                                        <S.PostInfoUpperLineBox>{v.created_at.toString()}</S.PostInfoUpperLineBox>
+                                        <S.PostInfoUpperLineBox>{v.post.created_at.toString()}</S.PostInfoUpperLineBox>
                                         <S.PostInfoUpperLineDot xmlns="http://www.w3.org/2000/svg" width="1" height="1" viewBox="0 0 1 1" fill="none">
                                             <circle cx="0.5" cy="0.5" r="0.5" fill="#999CA8"/>
                                         </S.PostInfoUpperLineDot>
-                                        <S.PostInfoUpperLineBox>{Math.round(Math.random()*10)}개의 댓글</S.PostInfoUpperLineBox>
+                                        <S.PostInfoUpperLineBox>{}개의 댓글</S.PostInfoUpperLineBox>
                                     </S.PostInfoUpperLineRow>
 
                                     <S.PostDevideLine/>
@@ -75,12 +91,14 @@ const Main = () => {
                                     <S.PostLowerInfoRow>
                                         <S.PostProfileBox>
                                             <S.PostProfileImg src={ProfileIcon}/>
-                                            <S.ProfileText>{v.user.name}</S.ProfileText>
+                                            <S.ProfileText>{
+                                                // v.user.name
+                                            }</S.ProfileText>
                                         </S.PostProfileBox>
 
                                         <S.LinkBox>
                                             <S.LinkImg src={LikeIcon}/>
-                                            <S.LinkCountText>{v.likes}</S.LinkCountText>
+                                            <S.LinkCountText>{}</S.LinkCountText>
                                         </S.LinkBox>
 
                                     </S.PostLowerInfoRow>

@@ -166,6 +166,7 @@ export const MainInput = styled.textarea`
 
     width: 100%;
     height: 75vh;
+    outline: none;
 
     font-family: Pretendard;
     font-size: 1rem;

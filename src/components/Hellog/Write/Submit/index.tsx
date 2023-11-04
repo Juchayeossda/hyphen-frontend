@@ -16,6 +16,8 @@ const WriteSubmit = () => {
     const [isPrivate,setIsPrivate] = useState<boolean>(true)
     const [previewImg,setPreviewImg] = useState<File|null>(null)
     const [shortDescription,setShortDescription] = useState<string>("") 
+
+    const SHORTDESCRIPTIONMAXLENGTH = 100
     
     const imageFormData = new FormData()
     
@@ -91,11 +93,12 @@ const WriteSubmit = () => {
                     <S.PostIntroInput 
                         placeholder='포스트를 짧게 소개해보세요.'
                         value={shortDescription}
+                        maxLength={SHORTDESCRIPTIONMAXLENGTH-1}
                         onChange={(e)=>{
                             setShortDescription(e.target.value)
                         }}
                     />
-                    <S.TextCount>0/100</S.TextCount>
+                    <S.TextCount>{shortDescription.length}/{SHORTDESCRIPTIONMAXLENGTH}</S.TextCount>
                     <S.BoxTitle>공개 설정</S.BoxTitle>
                     <S.IsOpenBtnRow>
                         <S.IsOpenBtn 

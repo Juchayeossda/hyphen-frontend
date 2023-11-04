@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as S from "./style"
 import ProfileIcon  from "../../../assets/ProfileIcon.svg"
+import { Instance } from '../../../config/Axios';
+import { PostType } from '../type';
 
 
 const Detail = () => {
     const {id} = useParams()
+
+    const [postData,setPostData] = useState<PostType>()
+    const [commentsData,setCommentsData] = useState()
 
     const [isLike,setIsLike] = useState<boolean>(false)
     const NUMLIST = [...Array(11).map((v,i)=>i+1)]
@@ -14,9 +19,14 @@ const Detail = () => {
     const ToggleHandler = (id:number) => {
         // const k:string = id.toString()
         if (isOpenReply.includes(id)){
-            setIsOpenReply([])
+            setIsOpenReply(
+                isOpenReply.filter(i => i !== id)
+            )
         } else {
-            setIsOpenReply([id])
+            setIsOpenReply([
+                ...isOpenReply,
+                id
+            ])
         }
 
         /* setIsOpenReply(prev=>({
@@ -25,15 +35,41 @@ const Detail = () => {
         })) */
     }
 
+    useEffect(()=>{
+        Instance.get(`/api/hellog/posts/${id}`)
+        .then((res)=>{
+            setPostData(res.data.data)
+        })
+        .catch((err)=>{
+            console.error(err)
+        })
+
+        Instance.get('/api/hellog/posts/:post_id/comments')
+        .then((res)=>{
+            setPostData(res.data.data)
+        })
+        .catch((err)=>{
+            console.error(err)
+        })
+
+        Instance.patch('/api/hellog/posts/:post_id/like',{},{
+            headers: {
+                'Content-Type' : 'json',
+                'Authorization' : `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+
+    },[])
+
     return (
         <S.DetailLayout>
-            <S.Title>{id}번 게시글 제목</S.Title>
+            <S.Title>{postData?.post.title}</S.Title>
 
             <S.PostInfo>
                 <S.InfoBox>
                     <S.WriterText>Jahyun</S.WriterText>
                     <S.PostDot/>
-                    <S.PostTimeText>3초전</S.PostTimeText>
+                    <S.PostTimeText>{postData?.post.updated_at}</S.PostTimeText>
                 </S.InfoBox>
 
                 <S.LikeBox>
@@ -52,7 +88,7 @@ const Detail = () => {
                 </S.LikeBox>
             </S.PostInfo>
 
-            본문본문
+            {postData?.post.content}
 
             <S.WriterProfileLine/>
 

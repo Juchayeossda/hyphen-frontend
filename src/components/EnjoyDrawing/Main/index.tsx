@@ -14,6 +14,14 @@ const EnjoyDrawingMain = () => {
 
     useEffect(()=>{
         setIsActivePage(3)
+
+        Instance.get('/api/paint')
+        .then((res)=>{
+            console.log(res)
+        })
+        .catch((err)=>{
+            console.error(err)
+        })
     },[])
 
     const navigator = useNavigate()
