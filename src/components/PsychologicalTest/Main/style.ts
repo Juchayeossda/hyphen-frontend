@@ -72,10 +72,7 @@ export const SubmitBtn = styled.button`
 `
 
 export const Canvas = styled.canvas`
-    width: 1000px;
-    height: 1000px;
 
     border: 1px solid #000;
     background-color: white;
 `
-
