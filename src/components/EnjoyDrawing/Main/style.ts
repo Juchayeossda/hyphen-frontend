@@ -45,7 +45,7 @@ export const TagSettingIconImg = styled.img`
 export const TagBox = styled.div`
     margin: 0 0.5%;
 
-    width: 5vw;
+    width: 5.5vw;
     height: 100%;
     background-color: #B0EDD0;
     border-radius: 20px;

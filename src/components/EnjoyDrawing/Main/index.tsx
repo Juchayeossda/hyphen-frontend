@@ -16,7 +16,7 @@ const EnjoyDrawingMain = () => {
     useEffect(()=>{
         setIsActivePage(3)
 
-        Instance.get('/api/paint')
+        Instance.get('/api/picture/main')
         .then((res)=>{
             console.log(res)
         })

@@ -10,10 +10,10 @@ const Detail = () => {
     const {id} = useParams()
 
     const [postData,setPostData] = useState<PostType>()
-    const [commentsData,setCommentsData] = useState()
-
+    const [commentsData,setCommentsData] = useState([])
     const [isLike,setIsLike] = useState<boolean>(false)
-    const NUMLIST = [...Array(11).map((v,i)=>i+1)]
+
+    const [writeComment,setWriteComment] = useState<string>()
     const [isOpenReply, setIsOpenReply] = useState<number[]>([])
 
     const ToggleHandler = (id:number) => {
@@ -44,32 +44,72 @@ const Detail = () => {
             console.error(err)
         })
 
-        Instance.get('/api/hellog/posts/:post_id/comments')
+        Instance.get(`/api/hellog/posts/${id}/comments`)
         .then((res)=>{
-            setPostData(res.data.data)
+            if(res.data.data.comments !== null){
+                setCommentsData(res.data.data.comments)
+            }
         })
         .catch((err)=>{
             console.error(err)
         })
 
-        Instance.patch('/api/hellog/posts/:post_id/like',{},{
-            headers: {
-                'Content-Type' : 'json',
-                'Authorization' : `Bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
+        // Instance.patch(`/api/hellog/posts/${id}/like`,{},{
+        //     headers: {
+        //         'Content-Type' : 'json',
+        //         'Authorization' : `Bearer ${localStorage.getItem('accessToken')}`
+        //     }
+        // })
 
     },[])
 
+    const commentSubmit = () => {
+        Instance.post(`/api/hellog/posts/${id}/comments/comment`,{
+            content:writeComment,
+            parent_id:0
+        },{
+            headers:{
+                'Authorization' : `Bearer ${localStorage.getItem('accessToken')}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((res)=>{
+            alert("댓글 작성에 성공하였습니다.")
+            console.log(res)
+        })
+        .catch((err)=>{
+            console.error(err)
+        })
+    }
+
+    useEffect(()=>{
+        // if(postData){
+        //     console.log(postData.post.title)
+        // }
+    },[postData])
+    
+    if(postData === undefined){
+        return(
+            <>
+                <h1>데이터를 준비중입니다.</h1>
+            </>
+        )
+    }
+
     return (
         <S.DetailLayout>
-            <S.Title>{postData?.post.title}</S.Title>
+                <S.Title>{
+                    postData.post?.title
+                }</S.Title>
 
             <S.PostInfo>
                 <S.InfoBox>
                     <S.WriterText>Jahyun</S.WriterText>
                     <S.PostDot/>
-                    <S.PostTimeText>{postData?.post.updated_at}</S.PostTimeText>
+                    <S.PostTimeText>
+                    {
+                        postData.post?.updated_at
+                    }</S.PostTimeText>
                 </S.InfoBox>
 
                 <S.LikeBox>
@@ -77,7 +117,7 @@ const Detail = () => {
                         <S.LikeCountSvg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
                             <path d="M5.99984 11.4542L5.154 10.6842C2.14984 7.96 0.166504 6.16333 0.166504 3.95833C0.166504 2.16167 1.57817 0.75 3.37484 0.75C4.38984 0.75 5.364 1.2225 5.99984 1.96917C6.63567 1.2225 7.60984 0.75 8.62484 0.75C10.4215 0.75 11.8332 2.16167 11.8332 3.95833C11.8332 6.16333 9.84984 7.96 6.84567 10.69L5.99984 11.4542Z" fill="#FF679E"/>
                         </S.LikeCountSvg>
-                        <S.LikeCountText>7</S.LikeCountText>
+                        <S.LikeCountText>{postData?.my_likes}</S.LikeCountText>
                     </S.LikeCountBox>
 
                     <S.IsLikeBox>
@@ -88,7 +128,9 @@ const Detail = () => {
                 </S.LikeBox>
             </S.PostInfo>
 
-            {postData?.post.content}
+            {
+                postData.post?.content
+            }
 
             <S.WriterProfileLine/>
 
@@ -103,13 +145,20 @@ const Detail = () => {
             <S.WriterProfileLine/>
 
             <S.commentTopBox>
-                <S.CommentCount>댓글 239</S.CommentCount>
-                <S.LeaveCommentInput/>
-                <S.LeveCommentSubmitBtn>댓글 작성</S.LeveCommentSubmitBtn>
+                <S.CommentCount>댓글 {commentsData.length}</S.CommentCount>
+                <S.LeaveCommentInput 
+                    value={writeComment}
+                    onChange={(e)=>{
+                        setWriteComment(e.target.value)
+                    }}
+                />
+                <S.LeveCommentSubmitBtn
+                    onClick={commentSubmit}
+                >댓글 작성</S.LeveCommentSubmitBtn>
             </S.commentTopBox>
 
             {
-                NUMLIST.map((v,i)=>
+                commentsData.map((v,i)=>
                     <S.CommentBox key={i}>
                         <S.CommentInfoBox>
                             <S.CommentWriterImg src={ProfileIcon}/>

@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { useNavigate } from "react-router-dom";
 
-export const BaseUrl = 'http://118.67.143.21:8080'
+export const BaseUrl = 'http://220.122.166.117:8080'
 
 /* export const axiosInstanse = (url:string) => {
     return Instance
@@ -11,7 +11,7 @@ export const Instance = axios.create({
 })
 
 export const Instance2 = axios.create({
-    baseURL:'http://10.80.161.230:8080'
+    baseURL:'http://10.80.162.18:8080'
 })
 
 axios.interceptors.request.use((config)=>{

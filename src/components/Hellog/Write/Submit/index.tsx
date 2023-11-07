@@ -24,11 +24,13 @@ const WriteSubmit = () => {
     const onSubmit = async () => {
         if(previewImg){
             imageFormData.append('image',previewImg)
-            imageFormData.append('title',title)
-            imageFormData.append('content',content)
-            imageFormData.append('is_private',isPrivate.toString())
+        }
+        if(shortDescription){
             imageFormData.append('short_description',shortDescription)
         }
+        imageFormData.append('title',title)
+        imageFormData.append('content',content)
+        imageFormData.append('is_private',isPrivate.toString())
         
         if(imageFormData){
             /* for (let keys of imageFormData.keys()) {
@@ -62,6 +64,16 @@ const WriteSubmit = () => {
             })
             .catch((err)=>{
                 console.error(err)
+
+                if(err.response.data.message === "Unauthorized"){
+                    alert('재로그인이 필요합니다.')
+                    navigator('/signin')
+                }
+
+                if(err.response.data.code === 400){
+                    alert("내용 또는 제목을 입력해주세요.")
+                    navigator('/hellog/write')
+                }
             })
         }
         

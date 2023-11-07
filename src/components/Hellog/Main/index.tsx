@@ -28,6 +28,7 @@ const Main = () => {
     })
     // const NUMLIST = [...Array(11).map((v,i)=>i+1)]
     const [postList, setPostList] = useState<PostType[]>([])
+    const [showPostList, setShowPostList] = useState<PostType[]>([])
 
     useEffect(()=>{
         setSearchValue("")
@@ -35,11 +36,29 @@ const Main = () => {
         Instance.get('/api/hellog/posts')
         .then((res)=>{
             setPostList(res.data.data.posts)
+            setShowPostList(res.data.data.posts)
         })
         .catch((err)=>{
             console.error(err)
         })
     },[])
+
+    useEffect(()=>{
+        if(searchValue === ""){
+            console.log("empty")
+            setShowPostList(postList)
+        } else{
+            setShowPostList(
+                showPostList.filter((d)=>(
+                    d.post.title.includes(searchValue) || d.post.short_description.includes(searchValue)
+                ))
+            )
+        }
+    },[searchValue])
+
+    const getAuthorName = ()=>{
+        Instance.get('/')
+    }
 
     return (
         <S.MainLayout>
@@ -74,9 +93,12 @@ const Main = () => {
                 <S.PostListBox>
 
                     {
-                        postList.map((v:any,i:any)=>(
+                        showPostList.map((v:any,i:any)=>(
                             <S.PostBox to={`/hellog/detail/${v.post.id}`}>
-                                <S.PostPreImg src={v.post.preview_image}/>
+                                {
+                                    v.post.preview_image &&
+                                    <S.PostPreImg src={v.post.preview_image}/>
+                                }
 
                                 <S.PostTextBox>
 
@@ -103,7 +125,7 @@ const Main = () => {
 
                                         <S.LinkBox>
                                             <S.LinkImg src={LikeIcon}/>
-                                            <S.LinkCountText>{}</S.LinkCountText>
+                                            <S.LinkCountText>{v.my_likes}</S.LinkCountText>
                                         </S.LinkBox>
 
                                     </S.PostLowerInfoRow>

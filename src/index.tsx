@@ -11,6 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <RecoilRoot>
     <meta name="referrer" content="no-referrer-when-downgrade" />
+    <title>hyphen</title>
     <React.StrictMode>
       <App />
     </React.StrictMode>

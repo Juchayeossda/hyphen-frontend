@@ -16,6 +16,8 @@ export const Title = styled.h1`
 `
 
 export const PostInfo = styled.div`
+    margin-bottom: 2vw;
+
     width: 100%;
 
     display: flex;

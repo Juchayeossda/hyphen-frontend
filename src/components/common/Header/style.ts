@@ -22,7 +22,7 @@ export const UserRow = styled.div`
 export const Logo = styled(Link)`
     color: #117746;
     font-family: Inter;
-    font-size: 1.5rem;
+    font-size: 1.25vw;
     font-weight: 600;
     text-decoration: none;
 `

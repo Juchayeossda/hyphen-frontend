@@ -52,6 +52,11 @@ const AIResult = (detectObject:any) => {
         return RESULTTEXT[2]
     }
 
+    // 아무것도 디텍션 못 했을 때
+    if(detectObject[0] === "99"){
+        return RESULTTEXT[4]
+    }
+
     // 내 뇌피셜
     return RESULTTEXT[3]
 }
@@ -102,5 +107,9 @@ const RESULTTEXT =[
         "good",
         "자신의 인생을 잘 살아나가고 있어요.",
         "스트레스를 해소하는 방법을 알아요.\n조금 외로울 수 있어요.\n자신이 나아가고자 하는 방향을 알고 있어요."
+    ],[
+        "",
+        "분석하지 못했어요.",
+        "그림을 분석하지 못했어요.\n다시 한번 그림을 그려보시는 건 어떨까요?"
     ]
 ]

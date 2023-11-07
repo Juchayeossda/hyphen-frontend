@@ -6,6 +6,7 @@ export interface PostType {
         joined_at:string,
     },
     isliked:boolean,
+    my_likes:number,
     post:{
         content:string,
         created_at:string,
