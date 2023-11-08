@@ -45,7 +45,6 @@ const Main = () => {
 
     useEffect(()=>{
         if(searchValue === ""){
-            console.log("empty")
             setShowPostList(postList)
         } else{
             setShowPostList(

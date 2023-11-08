@@ -16,16 +16,20 @@ const EnjoyDrawingMain = () => {
     useEffect(()=>{
         setIsActivePage(3)
 
-        Instance.get('/api/picture/main')
+        Instance.get('/api/hellog/posts')
         .then((res)=>{
             console.log(res)
         })
         .catch((err)=>{
             console.error(err)
         })
+
+        
+        
     },[])
 
     const navigator = useNavigate()
+    // 열정 
     const TAGLIST = ["붉은","푸른","무채색","차분한", "조용한", "활기찬","신나는","지친","우울한","어두운","밝은"]
     const [DrawingList,setDrawingList] = useState<{
         id:number,

@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { useNavigate } from "react-router-dom";
 
-export const BaseUrl = 'http://220.122.166.117:8080'
+export const BaseUrl = 'https://api.hyphen.or.kr'
 
 /* export const axiosInstanse = (url:string) => {
     return Instance
@@ -10,8 +10,9 @@ export const Instance = axios.create({
     baseURL:BaseUrl,
 })
 
+// AI용 서버
 export const Instance2 = axios.create({
-    baseURL:'http://10.80.162.18:8080'
+    baseURL:'https://api.hyphen.or.kr'
 })
 
 axios.interceptors.request.use((config)=>{

@@ -23,13 +23,13 @@ const PsyTestResult = () => {
 
                     <S.SuggestImgRaw>
                         <S.SuggestLink to='/'>
-                            <S.SuggestImg src='https://i.namu.wiki/i/bRd4cSzO2WT688Od5RXsi6V7EUT1xCXosiLdZS9y39IUskWOm8jYZY8r8AwBsRqMo_M5c8G9b-ZHAy8queMMAQ.webp'/>
+                            <S.SuggestImg src='https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRgpNubK5ZHxjcuz3B4DsRugIEvFlvhjfBrE_KqEhU2edirAAMa'/>
                         </S.SuggestLink>
                         <S.SuggestLink to='/'>
-                            <S.SuggestImg src='https://image.yes24.com/goods/102234240/XL'/>
+                            <S.SuggestImg src='https://lh3.googleusercontent.com/J0sw0IiqP2F4gavYnI-vUa5IBgHiHy42lohgm-qq1vuygUX0HQgylVSV1ZdDTV5XIg=s1200'/>
                         </S.SuggestLink>
                         <S.SuggestLink to='/'>
-                            <S.SuggestImg src='https://image.yes24.com/goods/97919905/XL'/>
+                            <S.SuggestImg src='https://lh3.googleusercontent.com/7aJyS2Nd7c8oCJKmfXlmM-rnSnLMY0ykfBFOP8N3OjV6M4hbhS_NEg8tH6SJDfvl=s1200'/>
                         </S.SuggestLink>
                     </S.SuggestImgRaw>
                 </S.SuggestImgBox>
