@@ -11,7 +11,7 @@ export const Instance = axios.create({
 })
 
 export const Instance2 = axios.create({
-    baseURL:'http://10.80.162.18:8080'
+    baseURL:'http://172.18.233.87:8080'
 })
 
 axios.interceptors.request.use((config)=>{
