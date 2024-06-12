@@ -12,10 +12,10 @@ export const Instance = axios.create({
 
 // AI용 서버
 export const Instance2 = axios.create({
-    baseURL:'https://api.hyphen.or.kr'
+    baseURL:'http://10.80.161.222:9190'
 })
 
-axios.interceptors.request.use((config)=>{
+/*axios.interceptors.request.use((config)=>{
     const navigator = useNavigate()
 
     const accessToken = localStorage.getItem('accessToken')
@@ -38,4 +38,4 @@ axios.interceptors.request.use((config)=>{
     }
 
     return config
-})
+}) */

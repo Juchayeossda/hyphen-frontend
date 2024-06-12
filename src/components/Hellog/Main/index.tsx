@@ -11,8 +11,7 @@ import { Instance } from "../../../config/Axios"
 import { PostType } from "../type"
 import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
 import { isActivePageAtom, searchValueAtom } from '../../../state/headerAtom';
-import userEvent from "@testing-library/user-event"
-import { useNavigate } from "react-router-dom"
+import dummies from "../dummies.json"
 
 const Main = () => {
     const setIsActivePage = useSetRecoilState(isActivePageAtom)
@@ -27,8 +26,8 @@ const Main = () => {
         lately:false
     })
     // const NUMLIST = [...Array(11).map((v,i)=>i+1)]
-    const [postList, setPostList] = useState<PostType[]>([])
-    const [showPostList, setShowPostList] = useState<PostType[]>([])
+    const [postList, setPostList] = useState<PostType[]>(dummies.post)
+    const [showPostList, setShowPostList] = useState<PostType[]>(dummies.post)
 
     useEffect(()=>{
         setSearchValue("")
@@ -41,6 +40,7 @@ const Main = () => {
         .catch((err)=>{
             console.error(err)
         })
+        console.log(showPostList)
     },[])
 
     useEffect(()=>{
@@ -54,6 +54,10 @@ const Main = () => {
             )
         }
     },[searchValue])
+
+    useEffect(()=>{
+        console.log(showPostList)
+    },[showPostList])
 
     const getAuthorName = ()=>{
         Instance.get('/')
@@ -90,7 +94,6 @@ const Main = () => {
                 </S.ChooseSortBtnBox>
 
                 <S.PostListBox>
-
                     {
                         showPostList.map((v:any,i:any)=>(
                             <S.PostBox to={`/hellog/detail/${v.post.id}`}>
@@ -109,7 +112,7 @@ const Main = () => {
                                         <S.PostInfoUpperLineDot xmlns="http://www.w3.org/2000/svg" width="1" height="1" viewBox="0 0 1 1" fill="none">
                                             <circle cx="0.5" cy="0.5" r="0.5" fill="#999CA8"/>
                                         </S.PostInfoUpperLineDot>
-                                        <S.PostInfoUpperLineBox>{}개의 댓글</S.PostInfoUpperLineBox>
+                                        <S.PostInfoUpperLineBox>{0}개의 댓글</S.PostInfoUpperLineBox>
                                     </S.PostInfoUpperLineRow>
 
                                     <S.PostDevideLine/>
@@ -118,7 +121,7 @@ const Main = () => {
                                         <S.PostProfileBox>
                                             <S.PostProfileImg src={ProfileIcon}/>
                                             <S.ProfileText>{
-                                                // v.user.name
+                                                v.author.id
                                             }</S.ProfileText>
                                         </S.PostProfileBox>
 
@@ -132,18 +135,16 @@ const Main = () => {
                                 </S.PostTextBox>
 
                             </S.PostBox>
-
                         ))
                     }
 
 
-                    <S.PostBox to='/hellog/detail/10'>
-                    
+                    {/*<S.PostBox to='/hellog/detail/1'>
                         <S.PostTextBox>
-                            <S.PostTitle>노윤서 개이쁨</S.PostTitle>
-                            <S.PostPreContent>진짜 노윤서 너무 예쁜거 아님??? 진짜 말이 안된다. 어떻게 이렇게 예쁠 수 가있지? 진짜 너어어무 예쁘다.</S.PostPreContent>
+                            <S.PostTitle>{showPostList[0].post.title}</S.PostTitle>
+                            <S.PostPreContent>{showPostList[0].post.short_description}</S.PostPreContent>
                             <S.PostInfoUpperLineRow>
-                                    <S.PostInfoUpperLineBox>1초 전</S.PostInfoUpperLineBox>
+                                    <S.PostInfoUpperLineBox>{showPostList[0].post.updated_at}</S.PostInfoUpperLineBox>
                                     <S.PostInfoUpperLineDot xmlns="http://www.w3.org/2000/svg" width="1" height="1" viewBox="0 0 1 1" fill="none">
                                         <circle cx="0.5" cy="0.5" r="0.5" fill="#999CA8"/>
                                     </S.PostInfoUpperLineDot>
@@ -155,18 +156,18 @@ const Main = () => {
                                 <S.PostLowerInfoRow>
                                     <S.PostProfileBox>
                                         <S.PostProfileImg src={ProfileIcon}/>
-                                        <S.ProfileText>Jahyun</S.ProfileText>
+                                        <S.ProfileText>{showPostList[0].author.author_id}</S.ProfileText>
                                     </S.PostProfileBox>
 
                                     <S.LinkBox>
                                         <S.LinkImg src={LikeIcon}/>
-                                        <S.LinkCountText>7</S.LinkCountText>
+                                        <S.LinkCountText>{showPostList[0].my_likes}</S.LinkCountText>
                                     </S.LinkBox>
 
                             </S.PostLowerInfoRow>
                         </S.PostTextBox>
 
-                    </S.PostBox>
+                    </S.PostBox>*/}
 
                 </S.PostListBox>
             </S.ContentBox>

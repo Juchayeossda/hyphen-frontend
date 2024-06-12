@@ -4,12 +4,13 @@ import * as S from "./style"
 import ProfileIcon  from "../../../assets/ProfileIcon.svg"
 import { Instance } from '../../../config/Axios';
 import { PostType } from '../type';
+import dummies from "../dummies.json"
 
 
 const Detail = () => {
     const {id} = useParams()
 
-    const [postData,setPostData] = useState<PostType>()
+    const [postData,setPostData] = useState<PostType>(dummies.post[0])
     const [commentsData,setCommentsData] = useState([])
     const [isLike,setIsLike] = useState<boolean>(false)
 
@@ -28,11 +29,6 @@ const Detail = () => {
                 id
             ])
         }
-
-        /* setIsOpenReply(prev=>({
-            ...prev,
-            [id] : !prev[id]
-        })) */
     }
 
     useEffect(()=>{
@@ -53,14 +49,6 @@ const Detail = () => {
         .catch((err)=>{
             console.error(err)
         })
-
-        // Instance.patch(`/api/hellog/posts/${id}/like`,{},{
-        //     headers: {
-        //         'Content-Type' : 'json',
-        //         'Authorization' : `Bearer ${localStorage.getItem('accessToken')}`
-        //     }
-        // })
-
     },[])
 
     const commentSubmit = () => {
@@ -81,12 +69,6 @@ const Detail = () => {
             console.error(err)
         })
     }
-
-    useEffect(()=>{
-        // if(postData){
-        //     console.log(postData.post.title)
-        // }
-    },[postData])
     
     if(postData === undefined){
         return(
@@ -138,7 +120,7 @@ const Detail = () => {
                 <S.WriterProfileImg src={ProfileIcon}/>
                 <S.WriterInfoBox>
                     <S.WriterName>Jahyun</S.WriterName>
-                    <S.WriterIntro>노윤서 팬입니다.</S.WriterIntro>
+                    <S.WriterIntro>테스트용 인물입니다.</S.WriterIntro>
                 </S.WriterInfoBox>
             </S.WriterBox>
 
@@ -164,11 +146,11 @@ const Detail = () => {
                             <S.CommentWriterImg src={ProfileIcon}/>
                             <S.CommentInfTextoBox>
                                 <S.CommentWriter>Jahyun</S.CommentWriter>
-                                <S.CommentDay>2023년 8월 27일</S.CommentDay>
+                                <S.CommentDay>2023년 9월 27일</S.CommentDay>
                             </S.CommentInfTextoBox>
                         </S.CommentInfoBox>
 
-                        <S.CommentContent>공감합니다. 노윤서님은 진짜 너무 미인이시네요!</S.CommentContent>
+                        <S.CommentContent>테스트용 댓글입니다.</S.CommentContent>
 
                         <S.ReplyInfoRow onClick={()=>ToggleHandler(i)}>
                             <S.ReplyToggleSvg isOpen={isOpenReply.includes(i)} xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
@@ -187,7 +169,7 @@ const Detail = () => {
                                     </S.CommentInfTextoBox>
                                 </S.CommentInfoBox>
 
-                                <S.CommentContent>ㅋㅇㅈ</S.CommentContent>
+                                <S.CommentContent>테스트용 답글입니다.</S.CommentContent>
 
                                 <S.ReplyDevideLine/>
 
