@@ -18,20 +18,19 @@ const PsyTest = () => {
 
     const [uploadImg,setUploadImg] = useState<File|null>()
     const imgFormData = new FormData()
-
+    const [detectObject, setDetectClass] = useState<string[]>([])
     
+    /*
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const [getCtx,setGetCtx] = useState<any>(null)
     // 선 활성화 또는 비활성화 상태
     const [ispainting,setIsPainting] = useState<boolean>(false)
-    
-
-    const [detectObject, setDetectClass] = useState<string[]>([])
+    */    
 
     useEffect(()=>{
         setIsActivePage(2)
 
-        
+        /*        
         const canvas:any = canvasRef.current
         const ctx = canvas.getContext("2d");
         if(ctx){
@@ -40,9 +39,11 @@ const PsyTest = () => {
             ctx.strokeStyle = "#000000";
             setGetCtx(ctx)
         }
+        */
         
     },[])
 
+    /*
     const drawingFunction = (e:any) => {
         const mouseX = e.nativeEvent.offsetX
         const mouseY = e.nativeEvent.offsetY
@@ -55,6 +56,7 @@ const PsyTest = () => {
             getCtx.stroke();
           }
     }
+    */
 
     const onSubmit = () => {
         if(uploadImg){
@@ -126,7 +128,7 @@ const PsyTest = () => {
 
             <S.SubmitBtn onClick={onSubmit}>제출</S.SubmitBtn>
 
-            <S.Canvas
+            {/*<S.Canvas
                 width={1000}
                 height={1000}
 
@@ -143,7 +145,7 @@ const PsyTest = () => {
                 onMouseMove={e => drawingFunction(e)}
                 onMouseLeave={() => setIsPainting(false)}
                 // onClick={(e)=>{alert(e.clientX)}}
-            ></S.Canvas>
+            ></S.Canvas>*/}
         </S.PsyTestLayout>
     );
 };

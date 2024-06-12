@@ -14,13 +14,13 @@ const EnjoyDrawingDetail = () => {
 
     const DUMMYCONTENT = [{
         src: 'https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQ-FvbbAq5IaJUhtwxXEwY0D-jiZju02ejnNHx_bQWL_27GF3srhwJgqusMAqKh3QqU',
-        intro: '그림에 대한 구체적이고 흥미로운 설명이 들어갈 예정입니다.'
+        intro: '이 그림은 모나리자입니다.'
     },{
         src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo8o9u31XYayMZRvWTfPRBdN8dPCrXIx_b35O57klZie1ccShcNRO_kTXLG0JjLoFHxBE&usqp=CAU',
-        intro: '그림에 대한 구체적인 설명 1이 들어갈 예정입니다.'
+        intro: '그림에 대한 구체적인 설명이 들어갈 예정입니다.'
     },{
         src: 'https://miro.medium.com/v2/resize:fit:1074/1*GOuSbb4PnQ_xqA-Hu2Mp7g.jpeg',
-        intro: '그림에 대한 구체적인 설명 2가 들어갈 예정입니다.'
+        intro: '그림에 대한 구체적인 설명이 들어갈 예정입니다.'
     }]
     const [DrawingList,setDrawingList] = useState<{
         id:number,
@@ -82,7 +82,7 @@ const EnjoyDrawingDetail = () => {
                         ) */
 
                         DUMMYCONTENT[currentIdx].src === undefined ? (
-                            <div>정보 가져</div>
+                            <div>정보 가져오는 중</div>
                         ) : (
                             <S.ExplainImg src={DUMMYCONTENT[currentIdx].src}/>
                         )
@@ -101,7 +101,7 @@ const EnjoyDrawingDetail = () => {
                             <S.LikeBtn>Like</S.LikeBtn>
 
                         </S.IconRow>
-                        <S.InfoTitle>{parseInt(id) + 1}번째 작품</S.InfoTitle>
+                        <S.InfoTitle>모나리자</S.InfoTitle>
                         <S.InfoContent>
                             {
                                 DUMMYCONTENT[currentIdx].intro
